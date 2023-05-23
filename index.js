@@ -30,17 +30,17 @@ app.get("/students", (req, res) => {
     });
 });
 
-app.get("/students", (req, res) => {
+app.post("/students", (req, res) => {
   const student = new Student({
     firstName: "John",
     lastName: "Khan",
-    rollNo: "21",
+    rollNo: 21,
     techStack: "MEVN",
-  })
+  });
   student
     .save()
-    .then((students) => {
-      res.json({ students });
+    .then(() => {
+      res.json({ message: "Student added successfully" });
     })
     .catch((err) => {
       res.json({ error: "Something went wrong" });
@@ -55,7 +55,7 @@ app.listen(process.env.PORT, () => {
     })
     .then(() => {
       console.log("DB connection established");
-      console.log("Serrver running on http://localhost:8000");
+      console.log("Server running on http://localhost:8000");
     })
     .catch((err) => console.log("DB connection failed", err));
 });
